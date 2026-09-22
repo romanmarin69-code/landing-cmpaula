@@ -296,6 +296,37 @@ body.modal-open { overflow: hidden; }
     transform: rotateX(7deg) rotateY(-3deg) translateZ(24px) !important;
   }
   .plan-card.featured { transform: rotateX(7deg) rotateY(3deg) translateZ(32px) !important; }
+
+  .hero-visual,
+  .hero-visual.reveal.is-visible { animation: mobileHeroDepth 5s ease-in-out infinite alternate; will-change: transform; }
+  .plan-card,
+  .plan-card.reveal.is-visible { animation: mobileCardDepth 4.5s ease-in-out infinite alternate; will-change: transform; }
+  .plan-card.featured,
+  .plan-card.featured.reveal.is-visible { animation-name: mobileFeaturedDepth; }
+}
+
+@keyframes mobileHeroDepth {
+  from { transform: rotateX(4deg) rotateZ(1deg) translateZ(26px); }
+  to { transform: rotateX(8deg) rotateZ(3deg) translateZ(38px); }
+}
+
+@keyframes mobileCardDepth {
+  from { transform: rotateX(5deg) rotateY(-3deg) translateZ(18px) !important; }
+  to { transform: rotateX(9deg) rotateY(2deg) translateZ(30px) !important; }
+}
+
+@keyframes mobileFeaturedDepth {
+  from { transform: rotateX(5deg) rotateY(3deg) translateZ(24px) !important; }
+  to { transform: rotateX(9deg) rotateY(-2deg) translateZ(38px) !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-visual,
+  .hero-visual.reveal.is-visible,
+  .plan-card,
+  .plan-card.reveal.is-visible,
+  .plan-card.featured,
+  .plan-card.featured.reveal.is-visible { animation: none; }
 }
 
 /* FAQ deck: a raised glass console floating clearly above the galactic background. */
