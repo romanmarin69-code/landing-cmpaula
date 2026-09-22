@@ -193,7 +193,7 @@ body.modal-open { overflow: hidden; }
 .plan-button { appearance: none; background: transparent; cursor: pointer; font-family: var(--body); width: 100%; }
 .plan-modal { align-items: center; display: grid; inset: 0; justify-items: center; opacity: 0; padding: 24px; pointer-events: none; position: fixed; perspective: 1400px; place-items: center; transition: opacity .25s ease; z-index: 50; }
 .plan-modal.is-open { opacity: 1; pointer-events: auto; }
-.modal-backdrop { background: rgba(66, 18, 47, .48); backdrop-filter: blur(12px); inset: 0; position: absolute; }
+.modal-backdrop { -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); background: rgba(66, 18, 47, .48); inset: 0; position: absolute; }
 .plan-modal-card { -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); background: linear-gradient(145deg, rgba(255, 249, 250, .93), rgba(250, 221, 231, .78)); border: 1px solid rgba(255, 255, 255, .9); border-radius: 30px; box-shadow: 22px 30px 0 rgba(72, 17, 50, .16), 0 35px 75px rgba(43, 10, 34, .3), inset 3px 3px 0 rgba(255,255,255,.95), inset -7px -9px 16px rgba(141,29,91,.1); margin: auto; max-height: min(760px, calc(100vh - 48px)); max-width: 700px; overflow: auto; padding: 48px 54px 44px; position: relative; transform: rotateX(-9deg) translateZ(-100px) scale(.94); transition: transform .5s cubic-bezier(.2,.8,.2,1); width: 100%; }
 .plan-modal.is-open .plan-modal-card { transform: rotateX(0) translateY(0) translateZ(80px) scale(1); }
 .plan-modal-card:before { border: 1px solid rgba(255,255,255,.75); border-radius: 24px; content: ''; inset: 8px; pointer-events: none; position: absolute; }
@@ -255,6 +255,21 @@ body.modal-open { overflow: hidden; }
 @keyframes planetSpinFront { 0% { transform: translateZ(72px) rotateY(0deg) rotateZ(5deg); } 50% { transform: translateZ(72px) rotateY(180deg) rotateZ(-5deg); } 100% { transform: translateZ(72px) rotateY(360deg) rotateZ(5deg); } }
 @keyframes planetHighlight { 0%, 100% { opacity: .58; transform: translateX(0) scale(.82); } 50% { opacity: 1; transform: translateX(125%) scale(1.08); } }
 @media (prefers-reduced-motion: reduce) { .glass-sphere, .glass-sphere:after { animation: none; } }
+
+/* Touch devices have no hover state, so keep the depth stable and make presses tactile. */
+@media (hover: none), (pointer: coarse) {
+  .hero-copy:hover,
+  .hero-copy.reveal.is-visible:hover { transform: rotateX(2deg) rotateZ(-.3deg) translateZ(50px); }
+  .plan-card:hover,
+  .plan-card:nth-child(1):hover,
+  .plan-card:nth-child(3):hover,
+  .plan-card.featured:hover { transform: rotateX(3deg) translateZ(8px) !important; }
+  .button:active,
+  .plan-button:active,
+  .modal-interest:active,
+  .nav-cta:active { transform: translateY(3px); }
+  .social-orb:active { transform: scale(.9); }
+}
 
 /* FAQ deck: a raised glass console floating clearly above the galactic background. */
 .faq { perspective: 1500px; position: relative; transform-style: preserve-3d; }
