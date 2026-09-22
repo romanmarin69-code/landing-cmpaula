@@ -169,6 +169,13 @@ body {
 .contact h2 em,
 .quote-section blockquote em { color: var(--hot-pink); }
 .hero-copy h1 { text-shadow: 0 2px 4px rgba(0, 0, 0, .15); }
+.running-characters { align-items: end; display: flex; height: 86px; justify-content: center; margin: -12px auto 17px; max-width: 520px; overflow: hidden; pointer-events: none; position: relative; }
+.runner { animation: runnerPass 8s linear infinite; background-image: url('./animada.jpeg'); background-repeat: no-repeat; background-size: 370px auto; border: 3px solid rgba(255,255,255,.85); border-radius: 50% 50% 14px 14px; box-shadow: 7px 9px 0 rgba(83,22,56,.16), 0 12px 18px rgba(83,22,56,.15); display: block; height: 76px; margin-left: -8px; position: relative; transform-origin: bottom center; width: 76px; }
+.runner-baby { animation-delay: 0s; background-position: -8px -54px; }
+.runner-woman { animation-delay: -.45s; background-position: -151px -10px; }
+.runner-dog { animation-delay: -.9s; background-position: -89px -175px; }
+@keyframes runnerPass { 0%, 100% { transform: translateX(-16px) rotate(-4deg); } 50% { transform: translateX(16px) rotate(4deg) translateY(-7px); } }
+@media (max-width: 520px) { .running-characters { height: 70px; margin-bottom: 13px; }.runner { background-size: 310px auto; height: 62px; width: 62px; }.runner-baby { background-position: -6px -45px; }.runner-woman { background-position: -126px -8px; }.runner-dog { background-position: -75px -147px; } }
 .button-dark {
   box-shadow: 9px 10px 0 rgba(54, 15, 39, .26), 0 16px 24px rgba(54, 15, 39, .2), inset 2px 2px 0 rgba(255, 255, 255, .16);
   transition: transform .2s ease, box-shadow .2s ease;
@@ -328,6 +335,11 @@ body.modal-open { overflow: hidden; }
   .plan-card.featured,
   .plan-card.featured.reveal.is-visible { animation: none; }
 }
+
+/* Character strip fallback: explicit dimensions keep the animation visible in every browser. */
+.hero-copy .running-characters { display: flex !important; height: 86px !important; margin: -12px auto 17px !important; overflow: hidden !important; position: relative !important; width: min(100%, 520px) !important; }
+.hero-copy .running-characters .runner { background-image: url('./animada.jpeg') !important; display: block !important; flex: 0 0 76px !important; height: 76px !important; position: relative !important; width: 76px !important; }
+@media (max-width: 520px) { .hero-copy .running-characters { height: 70px !important; margin-bottom: 13px !important; }.hero-copy .running-characters .runner { flex-basis: 62px !important; height: 62px !important; width: 62px !important; } }
 
 /* FAQ deck: a raised glass console floating clearly above the galactic background. */
 .faq { perspective: 1500px; position: relative; transform-style: preserve-3d; }
