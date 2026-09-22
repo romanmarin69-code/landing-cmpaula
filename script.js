@@ -175,6 +175,22 @@ function animateObjects() {
 }
 animateObjects();
 
+const touchDevice = window.matchMedia('(hover: none), (pointer: coarse)');
+let scrollFrame = null;
+
+function updateTouchDepth() {
+  scrollFrame = null;
+  if (!touchDevice.matches) return;
+  const depth = Math.max(-18, Math.min(18, (window.scrollY - 280) * 0.025));
+  document.documentElement.style.setProperty('--touch-depth', `${depth}px`);
+}
+
+window.addEventListener('scroll', () => {
+  if (scrollFrame) return;
+  scrollFrame = requestAnimationFrame(updateTouchDepth);
+}, { passive: true });
+updateTouchDepth();
+
 window.addEventListener('resize', () => {
   draggableObjects.forEach((object) => {
     const current = positions.get(object);

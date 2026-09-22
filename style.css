@@ -257,7 +257,7 @@ body.modal-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .glass-sphere, .glass-sphere:after { animation: none; } }
 
 /* Touch devices have no hover state, so keep the depth stable and make presses tactile. */
-@media (hover: none), (pointer: coarse) {
+@media (max-width: 520px), (hover: none), (pointer: coarse) {
   .hero-copy:hover,
   .hero-copy.reveal.is-visible:hover { transform: rotateX(2deg) rotateZ(-.3deg) translateZ(50px); }
   .plan-card:hover,
@@ -269,6 +269,33 @@ body.modal-open { overflow: hidden; }
   .modal-interest:active,
   .nav-cta:active { transform: translateY(3px); }
   .social-orb:active { transform: scale(.9); }
+}
+
+@media (max-width: 520px), (hover: none), (pointer: coarse) {
+  .hero-copy,
+  .hero-copy.reveal.is-visible {
+    box-shadow: 16px 20px 0 rgba(141, 29, 91, .18), 0 28px 42px rgba(83, 22, 56, .22), inset 3px 3px 0 rgba(255, 255, 255, .86), inset -4px -5px 10px rgba(141, 29, 91, .1);
+    transform: rotateX(5deg) rotateZ(-.5deg) translateZ(42px) translateY(var(--touch-depth, 0px));
+  }
+  .hero-visual,
+  .hero-visual.reveal.is-visible {
+    filter: drop-shadow(14px 20px 0 rgba(141, 29, 91, .12));
+    transform: rotateX(6deg) rotateZ(2deg) translateZ(30px) translateY(calc(var(--touch-depth, 0px) * -1));
+  }
+  .image-card {
+    box-shadow: 18px 24px 0 rgba(141, 29, 91, .2), 0 28px 42px rgba(83, 22, 56, .22);
+  }
+  .plan-card,
+  .plan-card:nth-child(1),
+  .plan-card:nth-child(3),
+  .plan-card.featured,
+  .plan-card.reveal.is-visible:nth-child(1),
+  .plan-card.reveal.is-visible:nth-child(3),
+  .plan-card.featured.reveal.is-visible {
+    box-shadow: 16px 20px 0 rgba(54, 15, 39, .2), 0 28px 42px rgba(54, 15, 39, .2), inset 2px 2px 0 rgba(255, 255, 255, .86), inset -5px -7px 12px rgba(141, 29, 91, .1);
+    transform: rotateX(7deg) rotateY(-3deg) translateZ(24px) !important;
+  }
+  .plan-card.featured { transform: rotateX(7deg) rotateY(3deg) translateZ(32px) !important; }
 }
 
 /* FAQ deck: a raised glass console floating clearly above the galactic background. */
@@ -438,3 +465,29 @@ body.modal-open { overflow: hidden; }
 /* Keep the long focus story scrollable inside its fixed desktop window. */
 .focus-modal-card { height: min(860px, calc(100vh - 40px)); max-height: min(860px, calc(100vh - 40px)); overflow: hidden; }
 .focus-modal.is-open .focus-modal-card { overflow-x: hidden; overflow-y: auto; }
+
+/* Final mobile depth pass: this comes after the desktop overrides above. */
+@media (max-width: 520px), (hover: none), (pointer: coarse) {
+  .hero-copy,
+  .hero-copy.reveal.is-visible {
+    box-shadow: 16px 20px 0 rgba(141, 29, 91, .18), 0 28px 42px rgba(83, 22, 56, .22), inset 3px 3px 0 rgba(255, 255, 255, .86), inset -4px -5px 10px rgba(141, 29, 91, .1) !important;
+    transform: rotateX(5deg) rotateZ(-.5deg) translateZ(42px) translateY(var(--touch-depth, 0px)) !important;
+  }
+  .hero-visual,
+  .hero-visual.reveal.is-visible {
+    filter: drop-shadow(14px 20px 0 rgba(141, 29, 91, .12));
+    transform: rotateX(6deg) rotateZ(2deg) translateZ(30px) translateY(calc(var(--touch-depth, 0px) * -1)) !important;
+  }
+  .image-card { box-shadow: 18px 24px 0 rgba(141, 29, 91, .2), 0 28px 42px rgba(83, 22, 56, .22) !important; }
+  .plan-card,
+  .plan-card:nth-child(1),
+  .plan-card:nth-child(3),
+  .plan-card.featured,
+  .plan-card.reveal.is-visible:nth-child(1),
+  .plan-card.reveal.is-visible:nth-child(3),
+  .plan-card.featured.reveal.is-visible {
+    box-shadow: 16px 20px 0 rgba(54, 15, 39, .2), 0 28px 42px rgba(54, 15, 39, .2), inset 2px 2px 0 rgba(255, 255, 255, .86), inset -5px -7px 12px rgba(141, 29, 91, .1) !important;
+    transform: rotateX(7deg) rotateY(-3deg) translateZ(24px) !important;
+  }
+  .plan-card.featured { transform: rotateX(7deg) rotateY(3deg) translateZ(32px) !important; }
+}
